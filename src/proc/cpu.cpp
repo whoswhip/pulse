@@ -46,7 +46,7 @@ namespace pulse::proc {
         };
 
         // first entry is aggregate "cpu"
-        if (!current.empty() && previous.empty()) {
+        if (!current.empty() && !previous.empty()) {
             usage.total_percent = calc(current[0], previous[0]);
         }
         
