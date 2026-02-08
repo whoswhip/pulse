@@ -14,7 +14,12 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(ftxui)
 
-add_executable(pulse src/main.cpp)
+add_executable(pulse
+    src/main.cpp
+    src/proc/cpu.cpp
+)
+
+target_include_directories(pulse PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 target_link_libraries(pulse PRIVATE
     ftxui::screen
