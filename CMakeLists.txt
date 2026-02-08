@@ -5,4 +5,19 @@ set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+include(FetchContent)
+
+FetchContent_Declare(
+    ftxui
+    GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
+    GIT_TAG v6.1.9
+)
+FetchContent_MakeAvailable(ftxui)
+
 add_executable(pulse src/main.cpp)
+
+target_link_libraries(pulse PRIVATE
+    ftxui::screen
+    ftxui::dom
+    ftxui::component
+)
