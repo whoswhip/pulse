@@ -17,7 +17,9 @@ FetchContent_MakeAvailable(ftxui)
 add_executable(pulse
     src/main.cpp
     src/proc/cpu.cpp
+    src/proc/memory.cpp
     src/ui/cpu_panel.cpp
+    src/ui/memory_panel.cpp
 )
 
 target_include_directories(pulse PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
