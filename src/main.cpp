@@ -17,7 +17,8 @@ using namespace pulse;
 
 auto main() -> int {
     auto screen = ScreenInteractive::Fullscreen();
-    
+    screen.TrackMouse(false);
+
     proc::cpu_reader cpu;
     proc::memory_reader memory;
 
