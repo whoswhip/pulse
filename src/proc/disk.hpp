@@ -20,6 +20,7 @@ namespace pulse::proc {
     };
     
     class disk_reader {
-        [[nodiscard]] auto read() -> std::expected<std::vector<disk_info>, std::string>;
+        public:
+            [[nodiscard]] auto read() -> std::expected<std::vector<disk_info>, std::string>;
     };
 }
