@@ -9,8 +9,15 @@ using namespace ftxui;
 namespace pulse::ui {
 
     auto mem_panel::format_kb(uint64_t kb) -> std::string {
-        if (kb >= 1048576) return std::format("{:.1f} GiB", static_cast<double>(kb) / 1048576.0);
-        if (kb >= 1024) return std::format("{:.1f} MiB", static_cast<double>(kb) / 1024.0);
+        constexpr uint64_t pib = 1099511627776;
+        constexpr uint64_t tib = 1073741824;
+        constexpr uint64_t gib = 1048576;
+        constexpr uint64_t mib = 1024;
+
+        if (kb >= pib) return std::format("{:.1f} PiB", static_cast<double>(kb) / pib);
+        if (kb >= tib) return std::format("{:.1f} TiB", static_cast<double>(kb) / tib);
+        if (kb >= gib) return std::format("{:.1f} GiB", static_cast<double>(kb) / gib);
+        if (kb >= mib) return std::format("{:.1f} MiB", static_cast<double>(kb) / mib);
         return std::format("{} KiB", kb);
     }
 
