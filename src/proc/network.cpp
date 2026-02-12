@@ -37,7 +37,7 @@ namespace pulse::proc {
 
             std::istringstream iss(line.substr(colon + 1));
             uint64_t rx_packets, rx_errs, rx_drop, rx_fifo, rx_frame, rx_compressed, rx_multicast;
-            iss >> iface.rx_bytes >> rx_packets >> rx_errs >> rx_drop >> rx_fifo >> rx_compressed >> rx_multicast;
+            iss >> iface.rx_bytes >> rx_packets >> rx_errs >> rx_drop >> rx_fifo >> rx_frame >> rx_compressed >> rx_multicast;
 
             uint64_t tx_packets, tx_errs, tx_drop, tx_fifo, tx_colls, tx_carrier, tx_compressed;
             iss >> iface.tx_bytes >> tx_packets >> tx_errs >> tx_drop >> tx_fifo >> tx_colls >> tx_carrier >> tx_compressed;
