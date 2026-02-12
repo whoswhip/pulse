@@ -10,6 +10,24 @@
 
 namespace pulse::proc {
     
+    namespace {
+
+        auto unescape_mount_path(const std::string& path) -> std::string {
+            std::string result;
+            result.reserve(path.size());
+            for (size_t i = 0; i < path.size(); ++i) {
+                if (path[i] == '\\' && i + 3 < path.size()) {
+                    char c = static_cast<char>((path[i + 1] - '0') * 64 + (path[i + 2] - '0') * 8 + (path[i + 3] - '0'));
+                    result += c;
+                    i += 3;
+                } else {
+                    result += path[i];
+                }
+            }
+            return result;
+        }
+    }
+
     auto disk_reader::read() -> std::expected<std::vector<disk_info>, std::string> {
         std::ifstream file("/proc/mounts");
         if (!file.is_open()) {
@@ -17,7 +35,7 @@ namespace pulse::proc {
         }
 
         static const std::set<std::string> real_fs = {
-            "ext4", "ext3", "btrfs", "xfs", "zfs", "ntfs", "vfat", "f2fs", "bcachefs"
+            "ext4", "ext3", "btrfs", "xfs", "zfs", "ntfs", "vfat", "f2fs", "bcachefs", "fuseblk"
         };
 
         std::vector<disk_info> disks;
@@ -27,6 +45,8 @@ namespace pulse::proc {
             std::istringstream iss(line);
             std::string device, mount, fs;
             iss >> device >> mount >> fs;
+
+            mount = unescape_mount_path(mount);
 
             if (!real_fs.contains(fs)) continue;
 
