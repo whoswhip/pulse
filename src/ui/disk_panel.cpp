@@ -8,11 +8,17 @@ using namespace ftxui;
 namespace pulse::ui {
 
     auto disk_panel::format_bytes(uint64_t bytes) -> std::string {
+        constexpr uint64_t pib = 1125899906842624;
+        constexpr uint64_t tib = 1099511627776;
         constexpr uint64_t gib = 1073741824;
         constexpr uint64_t mib = 1048576;
+        constexpr uint64_t kib = 1024;
 
+        if (bytes >= pib) return std::format("{:.1f} PiB", static_cast<double>(bytes) / pib);
+        if (bytes >= tib) return std::format("{:.1f} TiB", static_cast<double>(bytes) / tib);
         if (bytes >= gib) return std::format("{:.1f} GiB", static_cast<double>(bytes) / gib);
         if (bytes >= mib) return std::format("{:.1f} MiB", static_cast<double>(bytes) / mib);
+        if (bytes >= kib) return std::format("{:.1f} KiB", static_cast<double>(bytes) / kib);
 
         return std::format("{} B", bytes);
     }
