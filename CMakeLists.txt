@@ -19,9 +19,11 @@ add_executable(pulse
     src/proc/cpu.cpp
     src/proc/memory.cpp
     src/proc/disk.cpp
+    src/proc/network.cpp
     src/ui/cpu_panel.cpp
     src/ui/memory_panel.cpp
     src/ui/disk_panel.cpp
+    src/ui/network_panel.cpp
 )
 
 target_include_directories(pulse PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
