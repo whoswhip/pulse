@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/build/_deps/ftxui-src/include"
+      ],
+      "defines": [],
+      "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+      "cppStandard": "c++26",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
+}
